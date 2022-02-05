@@ -1,5 +1,5 @@
 import { useWeb3 } from "@3rdweb/hooks";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // https://stackoverflow.com/a/65378580
 import "regenerator-runtime/runtime";
@@ -38,14 +38,20 @@ export default function ConnectWallet() {
     connectWallet("injected");
   };
 
-  if(error) return <h1>{error}</h1>
-
+  if (error)
+    return (
+      <div>
+        <p>Error code: {error.code}</p>
+        <p className="text-red-500 font-medium">{error.message}</p>
+      </div>
+    );
+  
   return (
     <div className="">
       {address ? (
         <section>
           <h3 className="font-medium text-3xl">Status</h3>
-          <ConnectedMetamask/>
+          <ConnectedMetamask />
           <div className="grid grid-rows-2">
             <div className="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
               <p className="info-text alert alert-primary">
